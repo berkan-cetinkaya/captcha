@@ -49,6 +49,6 @@ __MACOSX/
 captcha_policies.json
 
 .*
-!/.dev.env/
+!.dev.env
 !/.github/
 !/.gitignore
