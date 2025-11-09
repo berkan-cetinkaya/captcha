@@ -1,0 +1,22 @@
+{
+    "provider": "turnstile",
+    "global": {
+        "site_key": "sitekeyhere",
+        "secret_key": "CAPTCHA_SECRET",
+        "theme": "light",
+        "appearance": "always"
+    },
+    "actions": {
+        "login": {
+            "theme": "dark",
+            "appearance": "always"
+        },
+        "search": {
+            "min_score": 0.3,
+            "site_key": "site_key_here",
+            "secret_key": "CAPTCHA_SECRET_SEARCH",
+            "theme": "auto",
+            "appearance": "interaction-only"
+        }
+    }
+}

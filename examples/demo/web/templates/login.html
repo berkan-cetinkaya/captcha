@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{{ .Title }}</title>
+        <script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer
+        ></script>
+        <style>
+            body {
+                font-family: system-ui, sans-serif;
+                margin: 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                width: 300px;
+            }
+            input,
+            button {
+                padding: 8px;
+                font-size: 15px;
+            }
+            pre {
+                background: #f9f9f9;
+                border: 1px solid #ddd;
+                padding: 10px;
+                width: 300px;
+                overflow-x: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>{{ .Title }} CAPTCHA Test</h2>
+
+        <form id="form">
+            <input type="text" placeholder="Username" required />
+            <input type="password" placeholder="Password" required />
+
+            <div
+                class="cf-turnstile"
+                data-sitekey="{{ .SiteKey }}"
+                data-action="{{ .Action }}"
+                data-appearance="{{ .Appearance }}"
+                data-theme="{{ .Theme }}"
+                data-callback="onTurnstileLoginSolved"
+                data-expired-callback="onTurnstileLoginExpired"
+                data-error-callback="onTurnstileLoginExpired"
+            ></div>
+
+            <button id="submitBtn" type="submit" disabled>Login</button>
+        </form>
+
+        <pre id="result"></pre>
+
+        <script>
+            const form = document.getElementById("form");
+            const result = document.getElementById("result");
+            const submitBtn = document.getElementById("submitBtn");
+
+            async function parseResponse(res) {
+                const text = await res.text();
+                try {
+                    return JSON.parse(text);
+                } catch (err) {
+                    return text;
+                }
+            }
+
+            window.onTurnstileLoginSolved = () => {
+                submitBtn.disabled = false;
+            };
+            window.onTurnstileLoginExpired = () => {
+                submitBtn.disabled = true;
+            };
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const tokenEl = document.querySelector(
+                    "[name='cf-turnstile-response']"
+                );
+                const token = tokenEl.value;
+                if (!token) {
+                    result.textContent = "⚠️ Complete the CAPTCHA challenge first.";
+                    return;
+                }
+
+                try {
+                    const res = await fetch("/api/{{ .Action }}", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ token }),
+                    });
+
+                    const body = await parseResponse(res);
+                    if (typeof body === "string") {
+                        result.textContent = `Response (${res.status}):\n${body}`;
+                    } else {
+                        result.textContent = `Response (${res.status}):\n${JSON.stringify(
+                            body,
+                            null,
+                            2
+                        )}`;
+                    }
+                } catch (err) {
+                    result.textContent = "❌ Network error: " + err.message;
+                }
+
+                // Turnstile tokens are single-use. Request a fresh one for the next submit.
+                if (typeof turnstile !== "undefined") {
+                    turnstile.reset();
+                } else {
+                    tokenEl.value = "";
+                }
+                submitBtn.disabled = true;
+            });
+        </script>
+    </body>
+</html>

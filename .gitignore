@@ -1,0 +1,54 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of the go build command
+/bin/
+/build/
+/dist/
+/out/
+
+# Test binary, coverage reports
+*.out
+*.cover
+*.cov
+coverage.txt
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependency or tool caches
+vendor/
+.env
+.env.*
+.DS_Store
+
+# Go workspace (Go 1.18+)
+go.work
+go.work.sum
+
+# Logs and temp files
+*.log
+/tmp/
+/debug/
+
+# OS-specific junk
+Thumbs.db
+ehthumbs.db
+Icon?
+__MACOSX/
+
+// policies
+captcha_policies.json
+
+.*
+!/.dev.env/
+!/.github/
+!/.gitignore
