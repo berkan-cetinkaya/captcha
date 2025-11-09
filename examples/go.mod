@@ -5,12 +5,13 @@ go 1.23.0
 toolchain go1.24.10
 
 require (
-	captcha v0.0.0
+	github.com/berkan-cetinkaya/captcha v0.1.0
 	github.com/gorilla/mux v1.8.1
 	github.com/joho/godotenv v1.5.1
 )
 
 require (
+	captcha v0.0.0-00010101000000-000000000000 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/go-jose/go-jose/v4 v4.1.1 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect

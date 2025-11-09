@@ -1,3 +1,5 @@
+github.com/berkan-cetinkaya/captcha v0.1.0 h1:TgXFrM0pRMx/d+ToaJvtT2N1vm18dJNnLq8nmitcG78=
+github.com/berkan-cetinkaya/captcha v0.1.0/go.mod h1:e4AIQakonnYSDqmS8sGb3Oce+u4tF/vnK8MfR6TNBLg=
 github.com/cenkalti/backoff/v4 v4.3.0 h1:MyRJ/UdXutAwSAT+s3wNd7MfTIcy71VQueUuFK343L8=
 github.com/cenkalti/backoff/v4 v4.3.0/go.mod h1:Y3VNntkOUPxTVeUxJ/G5vcM//AlwfmyYozVcomhLiZE=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=

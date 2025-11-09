@@ -6,9 +6,10 @@ import (
 	"log"
 	"strings"
 
-	cfg "captcha/internal/config"
-	"captcha/internal/policy"
-	"captcha/internal/verifier"
+	"github.com/berkan-cetinkaya/captcha/internal/policy"
+	"github.com/berkan-cetinkaya/captcha/internal/verifier"
+
+	cfg "github.com/berkan-cetinkaya/captcha/internal/config"
 )
 
 // ActionMetadata represents the frontend-facing configuration for a policy action.

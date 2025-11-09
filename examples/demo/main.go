@@ -8,8 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"captcha/pkg/captcha"
-
+	"github.com/berkan-cetinkaya/captcha"
 	"github.com/gorilla/mux"
 )
 

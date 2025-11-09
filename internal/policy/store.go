@@ -1,13 +1,14 @@
 package policy
 
 import (
-	"captcha/internal/config"
 	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/berkan-cetinkaya/captcha/internal/config"
 )
 
 const defaultMinScore = 0.5
